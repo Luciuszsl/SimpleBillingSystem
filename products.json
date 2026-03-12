@@ -1,0 +1,13 @@
+{
+    "products": [
+        { "name": "Roster",  "price": 3.50 },
+        { "name": "Steak",   "price": 4.00 },
+        { "name": "ZWB",     "price": 2.50 },
+        { "name": "Cola",    "price": 2.00 },
+        { "name": "Limo",    "price": 1.80 },
+        { "name": "Bier",    "price": 2.50 },
+        { "name": "Waffel",  "price": 2.00 },
+        { "name": "Speckfett",  "price": 2.00 },
+        { "name": "Schnaps", "price": 1.50 }
+    ]
+}
