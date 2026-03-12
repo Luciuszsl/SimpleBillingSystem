@@ -9,7 +9,7 @@ ApplicationWindow {
     height: 520
     minimumWidth: 640
     minimumHeight: 420
-    title: "LZ Software Studios - VKS"
+    title: "LZ Software Studios - SBS"
     color: "white"
 
     palette {

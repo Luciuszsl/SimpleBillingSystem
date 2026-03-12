@@ -1,4 +1,4 @@
-# LZ-VKS — Developer Guide
+# LZ-SBS — Developer Guide
 
 ## Project Overview
 
@@ -23,7 +23,7 @@ Products are loaded at runtime from `products.json` — no recompile needed to c
 ### Normal rebuild (QML / C++ changes)
 
 ```powershell
-Stop-Process -Name "appLZ_VKS" -ErrorAction SilentlyContinue
+Stop-Process -Name "appLZ_SBS" -ErrorAction SilentlyContinue
 $env:PATH = "C:\Qt\Tools\mingw1310_64\bin;C:\Qt\Tools\CMake_64\bin;C:\Qt\Tools\Ninja;$env:PATH"
 cmake --build "C:\Users\inku9\source\repos\Test1_Kassensystem\build"
 ```
@@ -31,7 +31,7 @@ cmake --build "C:\Users\inku9\source\repos\Test1_Kassensystem\build"
 ### Full reconfigure + build (after editing CMakeLists.txt)
 
 ```powershell
-Stop-Process -Name "appLZ_VKS" -ErrorAction SilentlyContinue
+Stop-Process -Name "appLZ_SBS" -ErrorAction SilentlyContinue
 $env:PATH = "C:\Qt\Tools\mingw1310_64\bin;C:\Qt\Tools\CMake_64\bin;C:\Qt\Tools\Ninja;$env:PATH"
 cmake -B "C:\Users\inku9\source\repos\Test1_Kassensystem\build" `
       -S "C:\Users\inku9\source\repos\Test1_Kassensystem" `
@@ -44,7 +44,7 @@ cmake --build "C:\Users\inku9\source\repos\Test1_Kassensystem\build"
 
 ```powershell
 $env:PATH = "C:\Qt\6.10.2\mingw_64\bin;C:\Qt\Tools\mingw1310_64\bin;$env:PATH"
-Start-Process "C:\Users\inku9\source\repos\Test1_Kassensystem\build\appLZ_VKS.exe"
+Start-Process "C:\Users\inku9\source\repos\Test1_Kassensystem\build\appLZ_SBS.exe"
 ```
 
 > **Important:** Always stop the running app before rebuilding — Windows locks the `.exe` file while it's running.
@@ -56,13 +56,13 @@ Start-Process "C:\Users\inku9\source\repos\Test1_Kassensystem\build\appLZ_VKS.ex
 ```
 Test1_Kassensystem/
 ├── CMakeLists.txt        # Build definition
-├── main.cpp              # Entry point (loads QML module "LZ_VKS")
+├── main.cpp              # Entry point (loads QML module "LZ_SBS")
 ├── Main.qml              # Full UI definition
 ├── productconfig.h       # C++ class: reads products.json → QVariantList
 ├── productconfig.cpp
 ├── products.json         # Runtime product config (edit freely, no recompile)
 ├── build/
-│   ├── appLZ_VKS.exe     # Compiled executable
+│   ├── appLZ_SBS.exe     # Compiled executable
 │   └── products.json     # Auto-copied here by CMake configure_file()
 └── DEV_GUIDE.md          # This file
 ```
@@ -140,5 +140,5 @@ Then restart the app — no rebuild required.
 | Issue | Notes |
 |-------|-------|
 | CMake Vulkan warning | `Could NOT find WrapVulkanHeaders` — harmless, ignore it |
-| Windows exe lock | Stop the app before rebuilding (`Stop-Process -Name "appLZ_VKS"`) |
+| Windows exe lock | Stop the app before rebuilding (`Stop-Process -Name "appLZ_SBS"`)|
 | `ApplicationWindow` icon | Does not support `icon.source` — do not add it |

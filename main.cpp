@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
         []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
 
-    engine.loadFromModule("LZ_VKS", "Main");
+    engine.loadFromModule("LZ_SBS", "Main");
 
     return app.exec();
 }
