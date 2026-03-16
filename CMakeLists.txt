@@ -16,6 +16,8 @@ qt_add_executable(appLZ_SBS
 # Copy the JSON config next to the executable at configure time
 configure_file(products.json ${CMAKE_CURRENT_BINARY_DIR}/products.json COPYONLY)
 
+qt_add_resources(appLZ_SBS products products.qrc)
+
 qt_add_qml_module(appLZ_SBS
     URI LZ_SBS
     VERSION 1.0

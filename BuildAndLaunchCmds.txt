@@ -1,0 +1,5 @@
+Build:
+powershell -NoProfile -ExecutionPolicy Bypass -File .\build_android.ps1
+
+Launch:
+& "C:\Users\inku9\AppData\Local\Android\Sdk\platform-tools\adb.exe" shell monkey -p org.qtproject.example.appLZ_SBS -c android.intent.category.LAUNCHER 1

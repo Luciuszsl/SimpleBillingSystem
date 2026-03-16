@@ -29,7 +29,12 @@ ApplicationWindow {
     property real   orderTotal: 0.0
 
     // Products are loaded from products.json at startup via ProductConfig
-    ProductConfig { id: config }
+    ProductConfig {
+        id: config
+        Component.onCompleted: {
+            console.log("ProductConfig loaded products count=", products.length)
+        }
+    }
 
     // ── Business logic ──────────────────────────────────────────────────────
 

@@ -14,14 +14,32 @@ ProductConfig::ProductConfig(QObject *parent) : QObject(parent)
 
 void ProductConfig::load()
 {
-    // Look for products.json next to the executable
-    const QString path = QDir(QCoreApplication::applicationDirPath())
-                             .filePath(QStringLiteral("products.json"));
+    const QString localPath = QDir(QCoreApplication::applicationDirPath())
+                              .filePath(QStringLiteral("products.json"));
 
-    QFile file(path);
+    QFile file(localPath);
     if (!file.open(QIODevice::ReadOnly)) {
-        qWarning("ProductConfig: could not open %s", qPrintable(path));
-        return;
+        const QString candidates[] = {
+            QStringLiteral(":/products.json"),
+            QStringLiteral("qrc:/products.json"),
+            QStringLiteral("assets:/products.json"),
+            QStringLiteral("assets/products.json"),
+            QStringLiteral("products.json")
+        };
+        bool opened = false;
+        for (const QString &candidate : candidates) {
+            qInfo("ProductConfig: candidate exists %s => %d", qPrintable(candidate), QFile::exists(candidate));
+            file.setFileName(candidate);
+            if (file.open(QIODevice::ReadOnly)) {
+                qInfo("ProductConfig: opened candidate %s", qPrintable(candidate));
+                opened = true;
+                break;
+            }
+        }
+        if (!opened) {
+            qWarning("ProductConfig: could not open %s or any candidate", qPrintable(localPath));
+            return;
+        }
     }
 
     QJsonParseError err;
@@ -40,5 +58,6 @@ void ProductConfig::load()
         });
     }
 
+    qInfo("ProductConfig: loaded %d products from %s", m_products.count(), qPrintable(file.fileName()));
     emit productsChanged();
 }
